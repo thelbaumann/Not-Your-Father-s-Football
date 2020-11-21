@@ -21,6 +21,7 @@ var videoURL;
 
 var videoContainer = $("#videoContainer");
 var mainGameCard = $("#mainCard");
+var asidePastGameCard = $("#aside");
 
 
 
@@ -53,13 +54,46 @@ function pullTeamData() {
         url: UrlTeamIDnext5,
         method: "GET"
       }).then(function(response) {
-          // pulling the first response in the array, the next upcoming game. can convert to a for loop later if we want more future games
-              // than just the next one
+          // pulling the first response in the array, the next upcoming game. can convert to a for loop later if we want more future
+            // games than just the next one -- 
 
-          var gameTitle = $("<h1>");
-          var gameTitleAPI = response[0].strEvent;
-          gameTitle.text(gameTitleAPI);
-          mainGameCard.append(gameTitle);
+          var futureGameTitle = $("<h2>");
+          var futureGameTitleAPI = response[0].strEvent;
+          futureGameTitle.text(futureGameTitleAPI);
+          mainGameCard.append(futureGameTitle);
+
+      });
+
+      $.ajax({
+        url: UrlTeamIDlast5,
+        method: "GET"
+      }).then(function(response) {
+          // pulling the first response in the array, the most recent past game. can convert to a for loop later if we want more
+              // game history than just the most recently completed
+
+          var pastGameTitle = $("<h2>");
+          var pastGameTitleAPI = response[0].strEvent;
+          pastGameTitle.text(pastGameTitleAPI);
+          asidePastGameCard.append(pastGameTitle);
+
+          // display team + score from last game -- set up to append to the outer div but could convert to targeting
+            // a specific id in the dom and changing the text later, if need be
+
+          var pastHScore = $("<p>");
+          var pastHTeamAPI = response[0].strHomeTeam;
+          var pastHScoreAPI = response[0].intHomeScore;
+
+          pastHScore.text(pastHTeamAPI + ": " + pastHScoreAPI);
+
+          var pastAScore = $("<p>");
+          var pastATeamAPI = response[0].strAwayTeam;
+          var pastAScoreAPI = response[0].intAwayScore;
+
+          pastAScore.text(pastATeamAPI + ": " + pastAScoreAPI);
+
+          asidePastGameCard.append(pastHScore);
+          asidePastGameCard.append(pastAScore);
+
           
       });
 }
