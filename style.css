@@ -1,0 +1,10 @@
+.label {
+    display: block;
+    font: 1px, sans-serif;
+    float: right;
+}
+
+input,
+label {
+    margin: 1px 0;
+}
