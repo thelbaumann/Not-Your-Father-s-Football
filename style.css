@@ -1,6 +1,7 @@
-label {
+.label {
     display: block;
     font: 1px, sans-serif;
+    float: right;
 }
 
 input,
