@@ -8,3 +8,7 @@ input,
 label {
     margin: 1px 0;
 }
+
+.container {
+    text-align: center;
+}
