@@ -14,25 +14,72 @@
 <body>
   <div class="wrapper">
     <header>
-      <h1>Not Your Father's Football</h1>
+      <div>
+    <div class="uk-background-primary uk-dark uk-padding uk-panel">
+        <h1 class="uk-h4">Not Your Father's Football</h1>
+    </div>
+</div>
     </header>
 
     <!-- Float search bar to middle of the page -->
-      <div class="jumbotron"> <!-- jumbotron or container? -->
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search for you team">
 
-      <!-- add search box with placeholder -->
+        <div class="uk-margin">
+          <form class="uk-search uk-search-default">
+              <a href="search.html" uk-search-icon></a>
+              <input class="uk-search-input" type="search" placeholder="Search for your team">
+          </form>
+        </div>
 
       <!-- Next step: on click, taken to search.html -->
 
-        <a class="btn btn-primary btn-lg" href="search.html" role="button">Learn more</a>
-        </div>
+
+  </div>
+
+  <div class="wrapper">
+
+    <!-- h1 should reflect selected team name -->
+  <header>
+    <div class="uk-flex uk-flex-between">
+      <div class="uk-background-primary uk-dark uk-padding uk-panel">
+        <h1 class="uk-h4">Not Your Father's Football</h1>
       </div>
 
-
+      <div class="uk-margin">
+        <form class="uk-search uk-search-default">
+          <a href="search.html" uk-search-icon></a>
+          <input class="uk-search-input" type="search" placeholder="Search for your team">
+        </form>
+      </div>
     </div>
-  </div>
+  </header>
+
+
+    <div class="uk-text-center" uk-grid>
+      <div class="uk-width-expand@m">
+        <div class="uk-card uk-card-default uk-card-body">General Team Data</div>
+      </div>
+
+  <!-- UIKIT data graph embedded here -->
+
+      <div class="uk-width-auto@m">
+        <div class="uk-card uk-card-default uk-card-body">Most current game</div>
+      </div>
+    </div>
+
+  <!-- Score of match (if playing), otherwise date and time of next match -->
+
+
+  <!-- Highlight videos from previous matches-->
+  <iframe width = "width" height="height" src = "video_url"></iframe>
+
+  <iframe width = "width" height="height" src = "video_url"></iframe>
+
+  <iframe width = "width" height="height" src = "video_url"></iframe>
+
+  <iframe width = "width" height="height" src = "video_url"></iframe>
+
+
+</div>
   <script src="script.js"></script>
 </body>
 
