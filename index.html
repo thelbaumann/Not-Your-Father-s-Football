@@ -12,20 +12,33 @@
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit-icons.min.js"></script>
   
   <title>Not Your Father's Football</title>
-  <link rel="stylesheet" href="style.css" />
+
 </head>
 
 <body>
+
+
+  
   <div class="wrapper">
     <header>
-      <h1>Not Your Father's Football</h1>
+      <div>
+    <div class="uk-background-primary uk-dark uk-padding uk-panel">
+        <h1 class="uk-h4">Not Your Father's Football</h1>
+    </div>
+</div>
     </header>
     <div class="label">
 
       <!-- Float search bar to middle of the page -->
 
-        <input type="text" placeholder="Search for your team">
-        <button class="uk-button uk-button-default uk-button-large">Search</button>
+
+      <form class="uk-search uk-search-default">
+      <input class="uk-search-input" type="Search" placeholder="Search for your team.">
+        <span uk-search-icon></span>
+    </form>
+      
+
+       
 
         <!-- Next step: on click, taken to search.html -->
 
