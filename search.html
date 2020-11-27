@@ -15,21 +15,22 @@
 
 <body>
   <div class="wrapper">
-    <header>
 
-    <!-- h1 should reflect selected team name -->
-    <div>
-      <div class="uk-background-primary uk-dark uk-padding uk-panel">
+      <!-- h1 should reflect selected team name -->
+    <header>
+      <div class="uk-flex uk-flex-between">
+        <div class="uk-background-primary uk-dark uk-padding uk-panel">
           <h1 class="uk-h4">Not Your Father's Football</h1>
+        </div>
+
+        <div class="uk-margin">
+          <form class="uk-search uk-search-default">
+            <a href="search.html" uk-search-icon></a>
+            <input class="uk-search-input" type="search" placeholder="Search for your team">
+          </form>
+        </div>
       </div>
-  </div>
-      </header>
-          <div class="uk-margin">
-            <form class="uk-search uk-search-default">
-                <a href="search.html" uk-search-icon></a>
-                <input class="uk-search-input" type="search" placeholder="Search for your team">
-            </form>
-          </div>
+    </header>
 
     <p>General Team Data</p>
 
@@ -50,8 +51,6 @@
     <iframe width = "width" height="height" src = "video_url"></iframe>
 
 
-      </div>
-    </div>
   </div>
   <script src="script.js"></script>
 </body>
