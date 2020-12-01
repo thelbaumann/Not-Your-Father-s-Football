@@ -12,3 +12,23 @@ label {
 .container {
     text-align: center;
 }
+
+/* #team-searched {
+    display:none;
+} */
+
+
+#social-wrap {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+
+#social-0,
+#social-1,
+#social-2,
+#social-0 img,
+#social-1 img,
+#social-2 img {
+    width:30%;
+}

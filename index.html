@@ -1,95 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<!-- UIkit CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
-<!-- UIkit JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.5.9/js/uikit.min.js" integrity="sha512-OZ9Sq7ecGckkqgxa8t/415BRNoz2GIInOsu8Qjj99r9IlBCq2XJlm9T9z//D4W1lrl+xCdXzq0EYfMo8DZJ+KA==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
+  <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.5.9/js/uikit.min.js" integrity="sha512-OZ9Sq7ecGckkqgxa8t/415BRNoz2GIInOsu8Qjj99r9IlBCq2XJlm9T9z//D4W1lrl+xCdXzq0EYfMo8DZJ+KA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
 
 
-  <title>Not Your Father's Football</title>
-  <link rel="stylesheet" href="style.css"/>
+    <title>Not Your Father's Football</title>
+    <link rel="stylesheet" href="style.css"/>
 
-</head>
+  </head>
 
 <body>
-  <div class="wrapper">
-<div style="background:white;"></div>
-      <div style="background:white;" class="uk-container">
+  <div class="search-intro">
+      <div style="background:white;">
+          <div style="background:white;" class="uk-container">
 
-    <header>
+          <header>
+            <div style="width:100%;" class="uk-align-center"><h1>Not Your Father's Football</h1></div>
+          </header>
 
-        <div style="width:500px;" class="uk-align-center"><h1>Not Your Fathter's Football</h1></div>
+        <!-- Float search bar to middle of the page -->
 
-
-    </header>
-
-
-    <!-- Float search bar to middle of the page -->
-
-    <div style="width:200px;" class="uk-align-center">
-          <form class="uk-search uk-search-default">
-              <a href="search.html" uk-search-icon></a>
-              <input class="uk-search-input" type="search" placeholder="Search for your team">
-          </form>
+        <div style="width:100%;" class="">
+            <form class="uk-search uk-search-default">
+                <button href="search.html" uk-search-icon id="searchBtn"></button>
+                <input class="uk-search-input" type="search" placeholder="Search" id="searchField">
+            </form>
         </div>
 
-      <!-- Next step: on click, taken to search.html -->
-  </div>
-</div>
-  </div>
-
-  <div class="wrapper">
-
-    <!-- h1 should reflect selected team name -->
-  <header>
-    <div class="uk-flex uk-flex-between">
-      <div class="uk-background-primary uk-dark uk-padding uk-panel">
-        <h1 class="uk-h4">Not Your Father's Football</h1>
-      </div>
-
-      <div class="uk-margin">
-        <form class="uk-search uk-search-default">
-          <a href="search.html" uk-search-icon></a>
-          <input class="uk-search-input" type="search" placeholder="Search for your team">
-        </form>
+          <!-- Next step: on click, taken to search.html -->
+        </div>
       </div>
     </div>
-  </header>
 
+  <div id="team-searched">
 
     <div class="uk-text-center" uk-grid>
-      <div class="uk-width-expand@m">
-        <div class="uk-card uk-card-default uk-card-body">General Team Data</div>
+
+      <div class="uk-width-expand@m" id="mainCard">
+        <div class="uk-card uk-card-default uk-card-body">
+          
+          <div id="social-wrap">
+            <a id="social-0" href=""><img src="./images/facebook.png" alt="facebook"></a>
+            <a id="social-1" href=""><img src="./images/twitter.png" alt="twitter"></a>
+            <a id="social-2" href=""><img src="./images/instagram.png" alt="instagram"></a>
+          </div>
+        </div>
       </div>
 
   <!-- UIKIT data graph embedded here -->
 
-      <div class="uk-width-auto@m">
-        <div class="uk-card uk-card-default uk-card-body">Most current game</div>
-      </div>
+      <div class="uk-width-auto@m" id="aside">
+        <div class="uk-card uk-card-default uk-card-body">
+          <div id="lastGame">
+            <h3>Last game:</h3>
+          </div>
+          <div id="upcomingGame">
+            <h3>Upcoming game:</h3>
+          </div>
+        </div>
     </div>
+
+  </div>
 
   <!-- Score of match (if playing), otherwise date and time of next match -->
 
 
   <!-- Highlight videos from previous matches-->
-  <iframe width = "width" height="height" src = "video_url"></iframe>
 
-  <iframe width = "width" height="height" src = "video_url"></iframe>
+    <div id="video-container">
 
-  <iframe width = "width" height="height" src = "video_url"></iframe>
-
-  <iframe width = "width" height="height" src = "video_url"></iframe>
+    </div>
+    
 
 
-</div>
-  <script src="script.js"></script>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./script.js"></script>
+
 </body>
 
 </html>
