@@ -13,15 +13,23 @@ label {
     text-align: center;
 }
 
-/* #team-searched {
+#aside #uk-card-body {
+    width:80%;
+    margin:0px auto;
+}
+
+#team-searched {
     display:none;
-} */
+}
 
 
 #social-wrap {
     display:flex;
     flex-direction:row;
     justify-content:space-around;
+    width:50%;
+    margin:0px auto;
+    margin-top:2.5em;
 }
 
 #social-0,
@@ -31,4 +39,17 @@ label {
 #social-1 img,
 #social-2 img {
     width:30%;
+}
+
+h4 {
+    margin-top:0;
+}
+
+#lastGame {
+    border-bottom:1px solid gray;
+    margin-bottom:1em;
+}
+
+#mainCard, #aside {
+    margin-bottom:5%;
 }

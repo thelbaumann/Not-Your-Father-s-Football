@@ -35,6 +35,8 @@ $("#searchBtn").click(function(event) {
     teamName = $("#searchField").val();
     teamNameQuery = teamName.replace(' ', '_');
 
+    $("#team-searched").css("display", "block");
+
     // url that will use the team name typed in the search box to find the associated team info, and pull the team id for use in other data
 
     var UrlTeamName = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=" + teamNameQuery;
@@ -45,13 +47,32 @@ $("#searchBtn").click(function(event) {
       }).then(function(response) {
         teamID = response.teams[0].idTeam;
 
+        teamStadiumImageAPI = response.teams[0].strStadiumThumb;
+        teamAltImage = response.teams[0].strStadium;
+        teamStadiumImage = $("<img>").attr({src: teamStadiumImageAPI, alt: teamAltImage}).css("width", "50%");
+        mainGameCard.prepend(teamStadiumImage);
+
+
         teamLeagueAPI = response.teams[0].strLeague;
         teamLeague = $("<h4>").text(teamLeagueAPI);
         mainGameCard.prepend(teamLeague);
 
-        teamTitleAPI = response.teams[0].strTeam;
-        teamTitle = $("<h1>").text(teamTitleAPI);
-        mainGameCard.prepend(teamTitle);
+        if (response.teams[0].strWebsite == "") {
+          teamTitleAPI = response.teams[0].strTeam;
+          teamTitle = $("<h1>").text(teamTitleAPI);
+          mainGameCard.prepend(teamTitle);
+        }
+
+        else {
+          teamTitleAPI = response.teams[0].strTeam;
+          teamLinkAPI = response.teams[0].strWebsite;
+          teamTitle = $("<h1>").text(teamTitleAPI);
+          teamLink = $("<a>").attr("href", "https://" + teamLinkAPI);
+          mainGameCard.prepend(teamLink);
+          teamLink.prepend(teamTitle);
+        }
+
+        
 
         console.log(response.teams[0].strFacebook);
 
@@ -111,6 +132,16 @@ function pullTeamData() {
           futureGameTitle.text(futureGameTitleAPI);
           asideUpcomingGameCard.append(futureGameTitle);
 
+          futureGameDate = $("<p>");
+          futureGameDateAPI = response.events[0].dateEvent;
+          futureGameDate.text(futureGameDateAPI);
+          asideUpcomingGameCard.append(futureGameDate);
+
+          futureGameTime = $("<p>");
+          futureGameTimeAPI = response.events[0].strTimestamp;
+          futureGameTime.text(futureGameTimeAPI);
+          asideUpcomingGameCard.append(futureGameTime);
+
       });
 
     // url utilizing team id that will pull info for the team's last five games
@@ -135,14 +166,23 @@ function pullTeamData() {
           var pastHScore = $("<p>");
           var pastHTeamAPI = response.results[0].strHomeTeam;
           var pastHScoreAPI = response.results[0].intHomeScore;
-
-          pastHScore.text(pastHTeamAPI + ": " + pastHScoreAPI);
+          pastHScoreAPI = parseInt(pastHScoreAPI);
 
           var pastAScore = $("<p>");
           var pastATeamAPI = response.results[0].strAwayTeam;
           var pastAScoreAPI = response.results[0].intAwayScore;
+          pastAScoreAPI = parseInt(pastAScoreAPI);
+
+          if (pastHScoreAPI > pastAScoreAPI) {
+            pastHScore.css({"background-color": "green", "color": "white"});
+          }
+
+          else {
+            pastAScore.css({"background-color": "green", "color": "white"});
+          }
 
           pastAScore.text(pastATeamAPI + ": " + pastAScoreAPI);
+          pastHScore.text(pastHTeamAPI + ": " + pastHScoreAPI);
 
           asidePastGameCard.append(pastHScore);
           asidePastGameCard.append(pastAScore);
