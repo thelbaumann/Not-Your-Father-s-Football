@@ -1,3 +1,7 @@
+body{
+    background-color: aliceblue;
+}
+
 .label {
     display: block;
     font: 1px, sans-serif;
