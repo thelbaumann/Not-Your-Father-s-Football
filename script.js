@@ -19,10 +19,10 @@ var futureGameTitleAPI;
 
 // variables for HTML elements
 
-var videoContainer = $("#video-container");
-var mainGameCard = $("#mainCard .uk-card-body");
-var asidePastGameCard = $("#aside #lastGame");
-var asideUpcomingGameCard = $("#aside #upcomingGame");
+var videoContainer = $("#video-container .appended-data");
+var mainGameCard = $("#mainCard .uk-card-body .appended-data");
+var asidePastGameCard = $("#aside #lastGame .appended-data");
+var asideUpcomingGameCard = $("#aside #upcomingGame .appended-data");
 // var socials = ["strFacebook", "strTwitter", "strInstagram"];
 
 
@@ -32,6 +32,8 @@ var asideUpcomingGameCard = $("#aside #upcomingGame");
 
 
 $("#searchBtn").click(function(event) {
+
+    $(".appended-data").empty();
 
     event.preventDefault();
 
@@ -95,9 +97,6 @@ $("#searchBtn").click(function(event) {
           teamLink.prepend(teamTitle);
         }
 
-        
-
-        console.log(response.teams[0].strFacebook);
 
         if (response.teams[0].strFacebook == "") {
           $("#social-0").css("display", "none");
@@ -109,13 +108,11 @@ $("#searchBtn").click(function(event) {
         }
 
         if (response.teams[0].strTwitter == "") {
-          console.log(response.teams[0].strTwitter);
           $("#social-1").css("display", "none");
         }
         
         else {
           var twitterUrl = response.teams[0].strTwitter;
-          console.log(twitterUrl);
           $("#social-1").attr("href", "https://" + twitterUrl);
         }
         
@@ -125,7 +122,6 @@ $("#searchBtn").click(function(event) {
         
         else {
           var instagramUrl = response.teams[0].strInstagram;
-          console.log(instagramUrl);
           $("#social-2").attr("href", "https://" + instagramUrl);
         }
 
@@ -155,16 +151,9 @@ function pullTeamData() {
           futureGameTitle.text(futureGameTitleAPI);
           asideUpcomingGameCard.append(futureGameTitle);
 
-          // futureGameDate = $("<p>");
-          // futureGameDateAPI = response.events[0].dateEvent;
-          // moment(futureGameDateAPI).format('MMM Do');
-          // futureGameDate.text(futureGameDateAPI);
-          // asideUpcomingGameCard.append(futureGameDate);
-
           var futureGameTime = $("<p>");
           var futureGameTimeAPI = response.events[0].strTimestamp;
-          futureGameTimeAPI = moment(futureGameTimeAPI).format('MMMM Do, h:mm a');
-          console.log(futureGameTimeAPI);
+          futureGameTimeAPI = moment(futureGameTimeAPI).format('MMMM Do, h:mma z');
           futureGameTime.text(futureGameTimeAPI);
           asideUpcomingGameCard.append(futureGameTime);
 
@@ -233,7 +222,7 @@ function getVideos() {
 
       // if (response[i].competition.name == "ENGLAND: Premier League") {
       //   video = response[i].videos[0].embed;
-      //   $("#video-container").append(video);
+      //   videoContainer.append(video);
       //   // for (currentVid=0; i < response[i].videos.length; currentVid++) {
       //   //   video = response[i].videos[currentVid];
       //   //   videoContainer.append(video);
@@ -242,7 +231,7 @@ function getVideos() {
 
       if (response[i].competition.name == "ENGLAND: Premier League") {
           video = response[i].embed;
-          $("#video-container").append(video);
+          videoContainer.append(video);
           // for (currentVid=0; i < response[i].videos.length; currentVid++) {
           //   video = response[i].videos[currentVid];
           //   videoContainer.append(video);
@@ -250,20 +239,18 @@ function getVideos() {
         }
     }
 
-    $("#video-container").css({"width": "40%", "margin": "0px auto"});
+    videoContainer.css({"width": "40%", "margin": "0px auto"});
   });
 
-  
-  console.log("did you make it to the end of the code?");
 }
 
+// jquery appended button / link click events
 
   $(document).on("click", "#seeMore", function() { 
     $.ajax({
       url: UrlTeamName,
       method: "GET"
     }).then(function(response) {
-      console.log("triggering click event?");
       $(".teamDescription").text("");
       var expandDescrip = response.teams[0].strDescriptionEN;
       $(".teamDescription").text(expandDescrip);
@@ -286,6 +273,23 @@ function getVideos() {
         $(".teamDescription").css({"width": "75%", "margin": "0px auto"});
 
     });
+  });
+
+  $(document).on("click", ".selectNewTeam", function(event) {
+
+    newTeamName = event.target.attr("team_Name");
+
+    UrlTeamName = "";
+    UrlTeamID = "";
+    teamName = "";
+    teamNameQuery = "";
+    teamID = "";
+    videoURL = "";
+    futureGameTitle = "";
+    futureGameTitleAPI = "";
+
+
+
   });
 
 
