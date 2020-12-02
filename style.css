@@ -61,3 +61,9 @@ h4 {
 button:hover {
     cursor: pointer;
 }
+
+#video-container {
+    display: grid;
+    grid-template-columns: repeat(3);
+    grid-auto-columns: ;
+}
