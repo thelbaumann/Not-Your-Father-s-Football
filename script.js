@@ -7,6 +7,7 @@
 
 // variables to be set by the API
 
+var UrlTeamName;
 var UrlTeamID;
 var teamName;
 var teamNameQuery;
@@ -28,6 +29,8 @@ var asideUpcomingGameCard = $("#aside #upcomingGame");
 // on click of the search button, pull the value typed by the user from the search field. take the value and replace any spaces within it with underlines,
   // then feed it to the first api's team name query and pull the team id from the result
 
+
+
 $("#searchBtn").click(function(event) {
 
     event.preventDefault();
@@ -39,7 +42,7 @@ $("#searchBtn").click(function(event) {
 
     // url that will use the team name typed in the search box to find the associated team info, and pull the team id for use in other data
 
-    var UrlTeamName = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=" + teamNameQuery;
+    UrlTeamName = "https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=" + teamNameQuery;
 
     $.ajax({
         url: UrlTeamName,
@@ -47,14 +50,34 @@ $("#searchBtn").click(function(event) {
       }).then(function(response) {
         teamID = response.teams[0].idTeam;
 
+        teamDescripAPI = $("<p>").text(response.teams[0].strDescriptionEN).addClass("teamDescription");
+
+       if (teamDescripAPI.text().length > 300) {
+            teamDescripAPI.text(teamDescripAPI.text().substr(0, 300));
+            teamDescripAPI.append("...\"");
+            teamDescripAPI.prepend("\"");
+            teamDescripAPI.append(" <a id=\"seeMore\">Read More</a>");
+            teamDescripAPI.css({"width": "75%", "margin": "0px auto"});
+            mainGameCard.prepend(teamDescripAPI);
+        }
+
+        else {
+            mainGameCard.prepend(teamDescripAPI);
+        }
+
+
+        teamStadiumNameAPI = response.teams[0].strStadium;
+        teamStadiumLocationAPI = response.teams[0].strStadiumLocation;
+        teamImageCaption = $("<p>").text(teamStadiumNameAPI + " — " + teamStadiumLocationAPI).css("font-style", "italic");
+        mainGameCard.prepend(teamImageCaption);
+
         teamStadiumImageAPI = response.teams[0].strStadiumThumb;
-        teamAltImage = response.teams[0].strStadium;
-        teamStadiumImage = $("<img>").attr({src: teamStadiumImageAPI, alt: teamAltImage}).css("width", "50%");
+        teamStadiumImage = $("<img>").attr({src: teamStadiumImageAPI, alt: teamStadiumNameAPI}).css("width", "50%");
         mainGameCard.prepend(teamStadiumImage);
 
 
         teamLeagueAPI = response.teams[0].strLeague;
-        teamLeague = $("<h4>").text(teamLeagueAPI);
+        teamLeague = $("<h4>").text(teamLeagueAPI).css("font-style", "italic");
         mainGameCard.prepend(teamLeague);
 
         if (response.teams[0].strWebsite == "") {
@@ -127,18 +150,21 @@ function pullTeamData() {
           // pulling the first response in the array, the next upcoming game. can convert to a for loop later if we want more future
           // games than just the next one -- 
 
-          futureGameTitle = $("<h4>");
-          futureGameTitleAPI = response.events[0].strEvent;
+          var futureGameTitle = $("<h4>");
+          var futureGameTitleAPI = response.events[0].strEvent;
           futureGameTitle.text(futureGameTitleAPI);
           asideUpcomingGameCard.append(futureGameTitle);
 
-          futureGameDate = $("<p>");
-          futureGameDateAPI = response.events[0].dateEvent;
-          futureGameDate.text(futureGameDateAPI);
-          asideUpcomingGameCard.append(futureGameDate);
+          // futureGameDate = $("<p>");
+          // futureGameDateAPI = response.events[0].dateEvent;
+          // moment(futureGameDateAPI).format('MMM Do');
+          // futureGameDate.text(futureGameDateAPI);
+          // asideUpcomingGameCard.append(futureGameDate);
 
-          futureGameTime = $("<p>");
-          futureGameTimeAPI = response.events[0].strTimestamp;
+          var futureGameTime = $("<p>");
+          var futureGameTimeAPI = response.events[0].strTimestamp;
+          futureGameTimeAPI = moment(futureGameTimeAPI).format('MMMM Do, h:mm a');
+          console.log(futureGameTimeAPI);
           futureGameTime.text(futureGameTimeAPI);
           asideUpcomingGameCard.append(futureGameTime);
 
@@ -232,12 +258,35 @@ function getVideos() {
 }
 
 
-// if the page is set up to hide search bar / display team info using display/display none, will need an open team page function (psuedo page change)
-  // if we are physically linking to a second html document for the other page, will likely not need this function
+  $(document).on("click", "#seeMore", function() { 
+    $.ajax({
+      url: UrlTeamName,
+      method: "GET"
+    }).then(function(response) {
+      console.log("triggering click event?");
+      $(".teamDescription").text("");
+      var expandDescrip = response.teams[0].strDescriptionEN;
+      $(".teamDescription").text(expandDescrip);
+      $(".teamDescription").append(" <a id=\"seeLess\">See Less</a>");
 
-// function openTeamPage() {
+    });
+  });
 
-// }
+  $(document).on("click", "#seeLess", function() { 
+    $.ajax({
+      url: UrlTeamName,
+      method: "GET"
+    }).then(function(response) {
+
+
+      $(".teamDescription").text($(".teamDescription").text().substr(0, 300));
+        $(".teamDescription").append("...\"");
+        $(".teamDescription").prepend("\"");
+        $(".teamDescription").append(" <a id=\"seeMore\">Read More</a>");
+        $(".teamDescription").css({"width": "75%", "margin": "0px auto"});
+
+    });
+  });
 
 
 
