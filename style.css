@@ -1,3 +1,7 @@
+body{
+    background-color: aliceblue;
+}
+
 .label {
     display: block;
     font: 1px, sans-serif;
@@ -82,4 +86,9 @@ button:hover {
     text-align:center;
     padding-bottom:3%;
     display:none;
+}
+#video-container {
+    display: grid;
+    grid-template-columns: repeat(3);
+    grid-auto-columns: ;
 }
