@@ -1,39 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.5.9/js/uikit.min.js" integrity="sha512-OZ9Sq7ecGckkqgxa8t/415BRNoz2GIInOsu8Qjj99r9IlBCq2XJlm9T9z//D4W1lrl+xCdXzq0EYfMo8DZJ+KA==" crossorigin="anonymous"></script>
-  <title>Not Your Father's Football</title>
-  <link rel="stylesheet" href="style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
 
-</head>
+    <link rel="shortcut icon" href="./images/soccerIcon.svg"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">  
+  <!-- UIkit JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.5.9/js/uikit.min.js" integrity="sha512-OZ9Sq7ecGckkqgxa8t/415BRNoz2GIInOsu8Qjj99r9IlBCq2XJlm9T9z//D4W1lrl+xCdXzq0EYfMo8DZJ+KA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+    
+
+
+    <title>Not Your Father's Football</title>
+    <link rel="stylesheet" href="style.css"/>
+
+  </head>
 
 <body>
-  <div class="wrapper">
-    <header>
-      <h1>Not Your Father's Football</h1>
-    </header>
+  <div class="search-intro">
 
-    <!-- Float search bar to middle of the page -->
-      <div class="jumbotron"> <!-- jumbotron or container? -->
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search for you team">
+    <div class="uk-container">
+      <header>
+        <a href="./index.html" id="headerH1"><h1 style="width:80%;" class="uk-text-left">Not Your Father's Football</h1></a>
+        <div style="width:20%;" class="">
+          <form class="uk-search uk-search-default uk-align-right">
+              <button href="search.html" uk-search-icon id="searchBtn"></button>
+              <input class="uk-search-input" type="search" placeholder="Search" id="searchField">
+          </form>
+      </div>
+      </header>
+    </div>
 
-      <!-- add search box with placeholder -->
+      <h2 id="leagueTeamHeader"></h2>
+      <a id="backToLeagues">Go back to League Selection</a>
+      <div id="teamList">
 
-      <!-- Next step: on click, taken to search.html -->
+      </div>
+    </div>
 
-        <a class="btn btn-primary btn-lg" href="search.html" role="button">Learn more</a>
+  <div id="team-searched">
+
+    <div class="uk-text-center" uk-grid>
+
+      <div class="uk-width-expand@m" id="mainCard">
+        <div class="uk-card uk-card-default uk-card-body">
+          <div class="appended-data">
+
+          </div>
+          <div id="social-wrap">
+            <a id="social-0" href=""><img src="./images/facebook.png" alt="facebook"></a>
+            <a id="social-1" href=""><img src="./images/twitter.png" alt="twitter"></a>
+            <a id="social-2" href=""><img src="./images/instagram.png" alt="instagram"></a>
+          </div>
         </div>
       </div>
 
+  <!-- UIKIT data graph embedded here -->
 
+      <div class="uk-width-auto@m" id="aside">
+        <div class="uk-card uk-card-default uk-card-body">
+          <div id="lastGame">
+            <h3>Last game:</h3>
+            <div class="appended-data">
+
+            </div>
+          </div>
+          <div id="upcomingGame">
+            <h3>Upcoming game:</h3>
+            <div class="appended-data">
+
+            </div>
+          </div>
+        </div>
     </div>
+
   </div>
-  <script src="script.js"></script>
+
+  <!-- Score of match (if playing), otherwise date and time of next match -->
+
+
+  <!-- Highlight videos from previous matches-->
+
+    <div id="video-container">
+      <h2>Top Recent World Soccer Highlights</h2>
+      <div class="appended-data">
+
+      </div>
+    </div>
+    
+
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script src="./script.js"></script>
+
 </body>
 
 </html>
