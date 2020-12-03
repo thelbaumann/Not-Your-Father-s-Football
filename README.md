@@ -14,19 +14,26 @@ Our original concept had the following description, user story, elevator pitch, 
 Description
 
 ```
-A web application that uses the UIKit CSS framework, with data from the www.thesportsdb.com API, to allow you to search for or click on teams from top soccer leagues to view their general data, social medias, history of the last game, and information about next upcoming game (opponent, date/time). When generating a team page, it also delivers soccer highlight videos from www.scorebat.com/video-api/ API below that data. 
+A web application that uses the UIKit CSS framework, with data from the www.thesportsdb.com API, 
+to allow you to search for or click on teams from top soccer leagues to view their general data, 
+social medias, history of the last game, and information about next upcoming game (opponent, date/time). 
+When generating a team page, it also delivers soccer highlight videos from www.scorebat.com/video-api/ 
+API below that data. 
 ```
 
 User Story
 
 ```
-As someone who follows European soccer, I want a web application that gives me match statistics and highlights from the league, so that I can keep up with my favorite teams and their games. 
+As someone who follows European soccer, I want a web application that gives me match statistics and
+highlights from the league, so that I can keep up with my favorite teams and their games. 
 ```
 
 Elevator Pitch
 
 ```
-Soccer is a worldwide sport with a large following and highlight videos are a great vehicle to pull in more fans.  Using 2 different API’s, from both Scorebat.com and TheSportsDB.com, we search European soccer leagues to provide general team information, videos, recent and upcoming games.
+Soccer is a worldwide sport with a large following and highlight videos are a great vehicle to pull
+in more fans.  Using 2 different API’s, from both Scorebat.com and TheSportsDB.com, we search 
+European soccer leagues to provide general team information, videos, recent and upcoming games.
 ```
 
 Wireframes
