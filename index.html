@@ -7,9 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css" />
+
+    <link rel="shortcut icon" href="./images/soccerIcon.svg"/>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">  
   <!-- UIkit JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.5.9/js/uikit.min.js" integrity="sha512-OZ9Sq7ecGckkqgxa8t/415BRNoz2GIInOsu8Qjj99r9IlBCq2XJlm9T9z//D4W1lrl+xCdXzq0EYfMo8DZJ+KA==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit-icons.min.js"></script>
+    
 
 
     <title>Not Your Father's Football</title>
@@ -19,33 +25,20 @@
 
 <body>
   <div class="search-intro">
-      <div style="background:aliceblue;">
-        <div style="background:aliceblue;" class="uk-container">
 
-
-        <div style="width:100%;" class="">
-            <form class="uk-search uk-search-default">
-             <!-- search bar on the top left of the page -->
-          <header>
-            <div style="width:500px;" class="uk-align-center"><h1>Not Your Father's Football</h1></div>
-            <div style="width:300px;" class="uk-position-top-left uk-dark">
-              <form class="uk-search uk-search-default">
-                <button href="search.html" uk-search-icon id="searchBtn"></button>
-                <input class="uk-search-input" type="search" placeholder="Search" id="searchField">
-              </form>
-            </div>
-         
-         
-          </header>
-
-        
-       
-
-          
-        </div>
+    <div class="uk-container">
+      <header>
+        <h1 style="width:80%;" class="uk-text-left">Not Your Father's Football</h1>
+        <div style="width:20%;" class="">
+          <form class="uk-search uk-search-default uk-align-right">
+              <button href="search.html" uk-search-icon id="searchBtn"></button>
+              <input class="uk-search-input" type="search" placeholder="Search" id="searchField">
+          </form>
       </div>
+      </header>
+    </div>
 
-      <h2 id="leagueTeamHeader">Select a league to list its teams:</h2>
+      <h2 id="leagueTeamHeader"></h2>
       <a id="backToLeagues">Go back to League Selection</a>
       <div id="teamList">
 
@@ -96,6 +89,7 @@
   <!-- Highlight videos from previous matches-->
 
     <div id="video-container">
+      <h2>Top Recent World Soccer Highlights</h2>
       <div class="appended-data">
 
       </div>

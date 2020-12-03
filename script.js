@@ -1,10 +1,3 @@
-
-// url variables
-
-
-
-
-
 // variables to be set by the API
 
 var UrlTeamName = "";
@@ -25,8 +18,6 @@ var asidePastGameCard = $("#aside #lastGame .appended-data");
 var asideUpcomingGameCard = $("#aside #upcomingGame .appended-data");
 var teamList = $("#teamList");
 
-// var socials = ["strFacebook", "strTwitter", "strInstagram"];
-
 
 // on click of the search button, pull the value typed by the user from the search field. take the value and replace any spaces within it with underlines,
   // then feed it to the first api's team name query and pull the team id from the result
@@ -46,7 +37,7 @@ function prepareSoccerLeagues() {
     method: "GET",
     success: function(response) {
 
-      $("#leagueTeamHeader").text("Select one of the top leagues to list its teams:");
+      $("#leagueTeamHeader").text("Search for a team above or browse the teams in a league!");
 
       for (i=0; i < 7; i++) {
         var leagueLink = $("<div class=\"leagueSelectWrapper\"><a class=\"selectNewLeague\"" + "league_id=\"" + response.leagues[i].idLeague + "\"><p>" + response.leagues[i].strLeague + "</p></a></div>")
@@ -81,7 +72,7 @@ function getLeagueBadges() {
 
       var leagueBadge = $("<img src=\"" + response.leagues[0].strBadge + "\" alt=\"" + response.leagues[0].strLeague + "\">");
       leagueWrapper.prepend(leagueBadge);
-      leagueBadge.css({"width": "100px", "height": "100px", "display": "block", "margin": "0px auto", "padding-bottom": "1em"});
+      leagueBadge.css({"width": "50%", "height": "auto", "display": "block", "margin": "0px auto", "padding-bottom": "1em"});
     });
 
   });
@@ -97,7 +88,12 @@ $("#searchBtn").click(function(event) {
     event.preventDefault();
 
     if ($("#searchField").val() == "") {
-      teamNameQuery = teamName.replace(' ', '_');
+      if (teamNameQuery == "") {
+        alert("Please enter a team into the search bar or select one from the leagues to continue!");
+      }
+      else{
+        teamNameQuery = teamName.replace(' ', '_');
+      }
     }
 
     else {
@@ -169,35 +165,29 @@ $("#searchBtn").click(function(event) {
 
         if (response.teams[0].strFacebook == "") {
           $("#social-0").css("display", "none");
-          console.log(response.teams[0].strFacebook);
         }
         
         else {
           var facebookUrl = response.teams[0].strFacebook;
           $("#social-0").attr("href", "https://" + facebookUrl);
-          console.log(response.teams[0].strFacebook);
         }
 
         if (response.teams[0].strTwitter == "") {
           $("#social-1").css("display", "none");
-          console.log(response.teams[0].strTwitter);
         }
         
         else {
           var twitterUrl = response.teams[0].strTwitter;
           $("#social-1").attr("href", "https://" + twitterUrl);
-          console.log(response.teams[0].strTwitter);
         }
         
         if (response.teams[0].strInstagram == "") {
           $("#social-2").css("display", "none");
-          console.log(response.teams[0].strInstagram);
         }
         
         else {
           var instagramUrl = response.teams[0].strInstagram;
           $("#social-2").attr("href", "https://" + instagramUrl);
-          console.log(response.teams[0].strInstagram);
         }
 
 
@@ -264,11 +254,11 @@ function pullTeamData() {
           pastAScoreAPI = parseInt(pastAScoreAPI);
 
           if (pastHScoreAPI > pastAScoreAPI) {
-            pastHScore.css({"background-color": "green", "color": "white"});
+            pastHScore.css({"cssText": "color: white !important; background-color:green;"});
           }
 
           else {
-            pastAScore.css({"background-color": "green", "color": "white"});
+            pastAScore.css({"cssText": "color: white !important; background-color:green;"});
           }
 
           pastAScore.text(pastATeamAPI + ": " + pastAScoreAPI);
@@ -293,16 +283,12 @@ function getVideos() {
     method: "GET"
   }).then(function(response) {
 
-    for (i=0; i < response.length; i++) {
-
-      if (response[i].competition.name == "ENGLAND: Premier League") {
-          video = response[i].embed;
-          videoContainer.append(video);
-        }
-    }
+      for (i=0; i < 8; i++) {
+            video = response[i].embed;
+            videoContainer.append(video);
+      }
 
     $("._scorebatEmbeddedPlayerW_").css({"width": "40%", "padding-bottom": "calc(56.25% + 15px)"});
-    $(".WidgetFtB").css("display", "none !important");
   });
 
 }
@@ -342,9 +328,11 @@ function getVideos() {
 
     teamName = $(this).attr("team_name");
 
+    // keeps this variable from being empty before the ajax call so it is easier to determine a search error from the user
+    teamNameQuery = "placeholder";
+
     UrlTeamName = "";
     UrlTeamID = "";
-    teamNameQuery = "";
     teamID = "";
     videoURL = "";
     futureGameTitle = "";
