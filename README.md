@@ -7,6 +7,36 @@ This is web application is a group project built by [Laura Baumann](https://gith
 This project allows you to search for or select a Europen soccer team. Upon selection of a team, information is provided for that team provided by several links 
 from the [TheSportsDB.com API](www.thesportsdb.com). We pulled the teams, leagues, and their badges for the visual nav from these API's search url's. In addition, we pulled all general team data including name, league, location, stadium data, description, badge, last game, and the next game. The following part of the page is a feed of the most recent soccer highlights, which we pulled from a second API on [Scorebat.com](www.scorebat.com/video-api/).
 
+### Project Concept
+
+Our original concept had the following description, user story, elevator pitch, and wireframes:
+
+Description
+
+```
+A web application that uses the UIKit CSS framework, with data from the www.thesportsdb.com API, to allow you to search for or click on teams from top soccer leagues to view their general data, social medias, history of the last game, and information about next upcoming game (opponent, date/time). When generating a team page, it also delivers soccer highlight videos from www.scorebat.com/video-api/ API below that data. 
+```
+
+User Story
+
+```
+As someone who follows European soccer, I want a web application that gives me match statistics and highlights from the league, so that I can keep up with my favorite teams and their games. 
+```
+
+Elevator Pitch
+
+```
+Soccer is a worldwide sport with a large following and highlight videos are a great vehicle to pull in more fans.  Using 2 different API’s, from both Scorebat.com and TheSportsDB.com, we search European soccer leagues to provide general team information, videos, recent and upcoming games.
+```
+
+Wireframes
+
+![Wireframe #1](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/wireframe_1.png)
+
+![Wireframe #2](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/wireframe_2.png)
+
+Our full original proposal can be viewed [here](https://docs.google.com/document/d/1UEDNM471lJhHJ9VUO9PGjbSn64e6zJEVCpQrEecVWjE/edit?usp=sharing)
+
 ## Walkthrough
 
 ### First Look - Searching and League Selection
