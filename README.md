@@ -38,11 +38,11 @@ European soccer leagues to provide general team information, videos, recent and 
 
 Wireframes
 
-![Wireframe #1](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/wireframe_1.png)
+![Wireframe #1](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/wireframe_2.png)
 
-![Wireframe #2](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/wireframe_2.png)
+![Wireframe #2](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/wireframe_1.png)
 
-Our full original proposal can be viewed [here](https://docs.google.com/document/d/1UEDNM471lJhHJ9VUO9PGjbSn64e6zJEVCpQrEecVWjE/edit?usp=sharing)
+Our full original proposal can be viewed [here](https://docs.google.com/document/d/1UEDNM471lJhHJ9VUO9PGjbSn64e6zJEVCpQrEecVWjE/edit?usp=sharing).
 
 ## Walkthrough
 
