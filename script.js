@@ -7,14 +7,14 @@
 
 // variables to be set by the API
 
-var UrlTeamName;
-var UrlTeamID;
-var teamName;
-var teamNameQuery;
-var teamID;
-var videoURL;
-var futureGameTitle;
-var futureGameTitleAPI;
+var UrlTeamName = "";
+var UrlTeamID = "";
+var teamName = "";
+var teamNameQuery = "";
+var teamID = "";
+var videoURL = "";
+var futureGameTitle = "";
+var futureGameTitleAPI = "";
 
 
 // variables for HTML elements
@@ -23,11 +23,70 @@ var videoContainer = $("#video-container .appended-data");
 var mainGameCard = $("#mainCard .uk-card-body .appended-data");
 var asidePastGameCard = $("#aside #lastGame .appended-data");
 var asideUpcomingGameCard = $("#aside #upcomingGame .appended-data");
+var teamList = $("#teamList");
+
 // var socials = ["strFacebook", "strTwitter", "strInstagram"];
 
 
 // on click of the search button, pull the value typed by the user from the search field. take the value and replace any spaces within it with underlines,
   // then feed it to the first api's team name query and pull the team id from the result
+
+  $( document ).ready(function() {
+
+    prepareSoccerLeagues();
+    
+  });
+
+function prepareSoccerLeagues() {
+
+  teamList.html("");
+
+  $.ajax({
+    url: "https://www.thesportsdb.com/api/v1/json/1/all_leagues.php",
+    method: "GET",
+    success: function(response) {
+
+      $("#leagueTeamHeader").text("Select one of the top leagues to list its teams:");
+
+      for (i=0; i < 7; i++) {
+        var leagueLink = $("<div class=\"leagueSelectWrapper\"><a class=\"selectNewLeague\"" + "league_id=\"" + response.leagues[i].idLeague + "\"><p>" + response.leagues[i].strLeague + "</p></a></div>")
+        teamList.append(leagueLink);
+
+        leagueLink.css("width", "auto");
+        // leagueLink.find("img").css({"width": "65px", "height": "65px", "display": "block", "margin": "0px auto"});
+        leagueLink.find("p").css("text-align", "center");
+        $(".leagueSelectWrapper").css({"width": "200px", "height": "200px", "display": "flex", "flex-direction": "column", "justify-content": "center", "padding": "5px"});
+      }
+    },
+    complete: function(data) {
+      getLeagueBadges();
+    }
+  });
+
+}
+
+function getLeagueBadges() {
+
+  $("#teamList .leagueSelectWrapper a").each(function() {
+
+    var leagueWrapper = $(this);
+
+    var leagueID = $(this).attr('league_id');
+   
+
+    $.ajax({
+      url: "https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=" + leagueID,
+      method: "GET"
+    }).then(function(response) {
+
+      var leagueBadge = $("<img src=\"" + response.leagues[0].strBadge + "\" alt=\"" + response.leagues[0].strLeague + "\">");
+      leagueWrapper.prepend(leagueBadge);
+      leagueBadge.css({"width": "100px", "height": "100px", "display": "block", "margin": "0px auto", "padding-bottom": "1em"});
+    });
+
+  });
+
+}
 
 
 
@@ -37,10 +96,20 @@ $("#searchBtn").click(function(event) {
 
     event.preventDefault();
 
-    teamName = $("#searchField").val();
-    teamNameQuery = teamName.replace(' ', '_');
+    if ($("#searchField").val() == "") {
+      teamNameQuery = teamName.replace(' ', '_');
+    }
+
+    else {
+      teamName = $("#searchField").val();
+      teamNameQuery = teamName.replace(' ', '_');
+      $("#searchField").val("");
+    }
 
     $("#team-searched").css("display", "block");
+    $("#social-0").css("display", "block");
+    $("#social-1").css("display", "block");
+    $("#social-2").css("display", "block");
 
     // url that will use the team name typed in the search box to find the associated team info, and pull the team id for use in other data
 
@@ -100,29 +169,35 @@ $("#searchBtn").click(function(event) {
 
         if (response.teams[0].strFacebook == "") {
           $("#social-0").css("display", "none");
+          console.log(response.teams[0].strFacebook);
         }
         
         else {
           var facebookUrl = response.teams[0].strFacebook;
           $("#social-0").attr("href", "https://" + facebookUrl);
+          console.log(response.teams[0].strFacebook);
         }
 
         if (response.teams[0].strTwitter == "") {
           $("#social-1").css("display", "none");
+          console.log(response.teams[0].strTwitter);
         }
         
         else {
           var twitterUrl = response.teams[0].strTwitter;
           $("#social-1").attr("href", "https://" + twitterUrl);
+          console.log(response.teams[0].strTwitter);
         }
         
         if (response.teams[0].strInstagram == "") {
           $("#social-2").css("display", "none");
+          console.log(response.teams[0].strInstagram);
         }
         
         else {
           var instagramUrl = response.teams[0].strInstagram;
           $("#social-2").attr("href", "https://" + instagramUrl);
+          console.log(response.teams[0].strInstagram);
         }
 
 
@@ -220,26 +295,14 @@ function getVideos() {
 
     for (i=0; i < response.length; i++) {
 
-      // if (response[i].competition.name == "ENGLAND: Premier League") {
-      //   video = response[i].videos[0].embed;
-      //   videoContainer.append(video);
-      //   // for (currentVid=0; i < response[i].videos.length; currentVid++) {
-      //   //   video = response[i].videos[currentVid];
-      //   //   videoContainer.append(video);
-      //   // }
-      // }
-
       if (response[i].competition.name == "ENGLAND: Premier League") {
           video = response[i].embed;
           videoContainer.append(video);
-          // for (currentVid=0; i < response[i].videos.length; currentVid++) {
-          //   video = response[i].videos[currentVid];
-          //   videoContainer.append(video);
-          // }
         }
     }
 
-    videoContainer.css({"width": "40%", "margin": "0px auto"});
+    $("._scorebatEmbeddedPlayerW_").css({"width": "40%", "padding-bottom": "calc(56.25% + 15px)"});
+    $(".WidgetFtB").css("display", "none !important");
   });
 
 }
@@ -277,21 +340,56 @@ function getVideos() {
 
   $(document).on("click", ".selectNewTeam", function(event) {
 
-    newTeamName = event.target.attr("team_Name");
+    teamName = $(this).attr("team_name");
 
     UrlTeamName = "";
     UrlTeamID = "";
-    teamName = "";
     teamNameQuery = "";
     teamID = "";
     videoURL = "";
     futureGameTitle = "";
     futureGameTitleAPI = "";
 
-
+    $( "#searchBtn" ).trigger( "click" );
 
   });
 
+$(document).on("click", ".selectNewLeague", function(event) {
+
+    teamList.html("");
+
+    var leagueID = $(this).attr("league_id");
+    var leagueName = $(this).text();
 
 
+    $.ajax({
+      url: "https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=" + leagueID, // english premiere league only
+      method: "GET"
+    }).then(function(response) {
+    
+      var responseArrayLength = Object.keys(response.teams).length;
 
+      for (i=0; i < responseArrayLength; i++) {
+        var teamLink = $("<div class=\"teamSelectWrapper\"><a class=\"selectNewTeam\"" + "team_name=\"" + response.teams[i].strTeam + "\"><img src=\"" + response.teams[i].strTeamBadge + "\" alt=\"" + response.teams[i].strTeam + "\"><p>" + response.teams[i].strTeam + "</p></a></div>")
+        teamList.append(teamLink);
+
+        teamLink.css("width", "auto");
+        teamLink.find("img").css({"width": "65px", "height": "65px", "display": "block", "margin": "0px auto"});
+        teamLink.find("p").css("text-align", "center");
+        $(".teamSelectWrapper").css({"width": "100px", "padding": "5px"});
+
+        $("#leagueTeamHeader").text(leagueName);
+
+        $("#backToLeagues").css("display", "block");
+      }
+    });
+
+});
+
+$(document).on("click", "#backToLeagues", function(event) {
+
+  prepareSoccerLeagues();
+
+  $("#backToLeagues").css("display", "none");
+
+});

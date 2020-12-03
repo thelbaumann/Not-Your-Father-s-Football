@@ -22,6 +22,10 @@ label {
     display:none;
 }
 
+h1, h2, h3, h4 {
+    text-align: center;
+}
+
 
 #social-wrap {
     display:flex;
@@ -56,4 +60,26 @@ h4 {
 
 button:hover {
     cursor: pointer;
+}
+
+#teamList {
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content: center;
+}
+
+#video-container .appended-data {
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+#backToLeagues {
+    margin:0px auto;
+    text-align:center;
+    padding-bottom:3%;
+    display:none;
 }
