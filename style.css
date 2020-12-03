@@ -1,6 +1,18 @@
+/* ------------------------------------- */
+/* -----------General Styles------------ */
+/* ------------------------------------- */
+
 html {
     background-color: aliceblue;
 }
+
+button:hover {
+    cursor: pointer;
+}
+
+/* ------------------------------------- */
+/* ----------Input/Nav Styles----------- */
+/* ------------------------------------- */
 
 .label {
     display: block;
@@ -13,73 +25,11 @@ label {
     margin: 1px 0;
 }
 
-.container {
-    text-align: center;
-}
-
-#aside #uk-card-body {
-    width:80%;
-    margin:0px auto;
-}
-
-#team-searched {
-    display:none;
-}
-
-h1, h2, h3, h4 {
-    text-align: center;
-    font-family: 'Russo One', sans-serif;
-}
-
-
-#social-wrap {
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    width:50%;
-    margin:0px auto;
-    margin-top:2.5em;
-}
-
-#social-0,
-#social-1,
-#social-2,
-#social-0 img,
-#social-1 img,
-#social-2 img {
-    width:30%;
-}
-
-h4 {
-    margin-top:0;
-}
-
-#lastGame {
-    border-bottom:1px solid gray;
-    margin-bottom:1em;
-}
-
-#mainCard, #aside {
-    margin-bottom:5%;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
 #teamList {
     display:flex;
     flex-wrap:wrap;
     flex-direction:row;
     justify-content: center;
-}
-
-#video-container .appended-data {
-    width:100%;
-    display:flex;
-    flex-wrap:wrap;
-    flex-direction:row;
-    justify-content: space-around;
 }
 
 #backToLeagues {
@@ -88,12 +38,6 @@ button:hover {
     padding-bottom:3%;
     display:none;
 }
-/* #video-container {
-    display: grid;
-    grid-template-columns: repeat(3);
-    grid-auto-columns: ;
-} */
-
 
 .uk-search.uk-search-default {
     display: flex;
@@ -102,6 +46,19 @@ button:hover {
     height: inherit;
     height: 100%;
     margin:0;
+}
+
+/* ------------------------------------- */
+/* -------------Text Styles------------- */
+/* ------------------------------------- */
+
+h1, h2, h3, h4 {
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+}
+
+h4 {
+    margin-top:0;
 }
 
 header {
@@ -125,6 +82,69 @@ h1, h2, h3, h4, p {
     color:navy;
 }
 
+#headerH1:hover {
+    text-decoration: none;
+}
+
 a, a:hover {
     color: cadetblue;
+}
+
+
+
+/* ------------------------------------- */
+/* -------------Card Styles------------- */
+/* ------------------------------------- */
+
+.container {
+    text-align: center;
+}
+
+#aside #uk-card-body {
+    width:80%;
+    margin:0px auto;
+}
+
+#team-searched {
+    display:none;
+}
+
+#social-wrap {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    width:50%;
+    margin:0px auto;
+    margin-top:2.5em;
+}
+
+#social-0,
+#social-1,
+#social-2,
+#social-0 img,
+#social-1 img,
+#social-2 img {
+    width:30%;
+}
+
+#lastGame {
+    border-bottom:1px solid gray;
+    margin-bottom:1em;
+}
+
+
+#mainCard, #aside {
+    margin-bottom:5%;
+}
+
+/* ------------------------------------- */
+/* ------------Video Styles------------- */
+/* ------------------------------------- */
+
+#video-container .appended-data {
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content: space-around;
 }
