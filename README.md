@@ -36,7 +36,7 @@ Underneath the team information listed previously, is where the integration of t
 
 
 ### Error Messages for the User
-![web application errors](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/screen_3.5.png)
+![web application errors](https://github.com/CalderonJG/Not-Your-Father-s-Football/blob/Dev/images/error.png)
 
 There is only one user-facing error message set for the page, which is triggered if the user attempts to search a blank search bar value. This is only relevant on the first load of the page. If a team has already been selected and the user attemps a submit of a blank search bar then, it will only reload the current team page. This error-checking works on a series of if/else statements that checks for a blank search field, and if is blank, checks for a blank "teamQuery" variable. This variable is given a placeholder (until it is reassigned with the actual url query of the team later in the ajax call) immediately upon clicking a team's bags/name in the visual navigation. In this way, we are able to differentiate between an error or the search bar being blank due to a visual navigation selection.
 
