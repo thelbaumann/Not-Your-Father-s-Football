@@ -41,7 +41,7 @@ $( document ).ready(function() {
       method: "GET",
       success: function(response) {
 
-        $("#leagueTeamHeader").text("Search for a team above or browse the teams in a league!");
+        $("#leagueTeamHeader").text("Search for a team or browse teams in some top leagues!");
 
         for (i=0; i < 7; i++) {
           var leagueLink = $("<div class=\"leagueSelectWrapper\"><a class=\"selectNewLeague\"" + "league_id=\"" + response.leagues[i].idLeague + "\"><p>" + response.leagues[i].strLeague + "</p></a></div>")
