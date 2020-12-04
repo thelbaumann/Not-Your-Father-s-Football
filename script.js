@@ -8,6 +8,7 @@ var teamID = "";
 var videoURL = "";
 var futureGameTitle = "";
 var futureGameTitleAPI = "";
+var teamsSearched = [];
 
 
 // variables for HTML elements
@@ -22,6 +23,19 @@ var teamList = $("#teamList");
 // on page load, load visual navigation for leagues, but call it as a separate function so it can also be called later
 
 $( document ).ready(function() {
+
+  teamsSearched = JSON.parse(localStorage.getItem("teams") || "[]");
+
+  console.log(teamsSearched);
+
+  if (teamsSearched.length > 0) {
+    var lastTeam = teamsSearched[teamsSearched.length-1];
+    
+
+    var teamLinkLastTeam = $("<a class=\"selectNewTeam\"" + "team_name=\"" + lastTeam + "\"><p>" + lastTeam + "</p></a>");
+    
+    $("#lastSearched").append(teamLinkLastTeam);
+  }
 
   prepareSoccerLeagues();
   
@@ -181,6 +195,21 @@ $( document ).ready(function() {
         teamNameQuery = teamName.replace(' ', '_');
         $("#searchField").val("");
       }
+
+      teamsSearched.push(teamName);
+
+      localStorage.setItem("teams", JSON.stringify(teamsSearched));
+
+      teamsSearched = JSON.parse(localStorage.getItem("teams") || "[]");
+
+      var lastTeam = teamsSearched[teamsSearched.length-1];
+      
+      var teamLinkLastTeam = $("<a class=\"selectNewTeam\"" + "team_name=\"" + lastTeam + "\"><p>" + lastTeam + "</p></a>");
+
+      $("#lastSearched").empty();
+      
+      $("#lastSearched").append(teamLinkLastTeam);
+      
 
       // display the hidden html elements once a team is searched/selected
 
